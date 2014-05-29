@@ -28,6 +28,9 @@ public class Brain : MonoBehaviour {
     public static bool pocion2Tiempo;
     public static bool pocion3Tiempo;
 
+        //A Punto
+    public static Vector3 punto;
+
     public static int portales = 0;
     public static int unidadTeletransportador = 3;
     public static int unidadRotacion = 3;

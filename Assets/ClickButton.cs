@@ -45,8 +45,16 @@ public class ClickButton : MonoBehaviour {
             for (int i = 0; i < cuadricula.Length; i++)
                 cuadricula[i].BroadcastMessage("ActivarCollider", SendMessageOptions.RequireReceiver);
         }
-        /*if (aPunto && Brain.aPunto >= 1) Brain.aPunto--;
-        if (destruye && Brain.destruye >= 1) Brain.destruye--;*/
+        if (aPunto && Brain.aPunto >= 1 && Brain.ESTADO == "Nada")
+        {
+            Brain.aPunto--;
+            Brain.ESTADO = "A Punto";
+        }
+        if (destruye && Brain.destruye >= 1 && Brain.ESTADO == "Nada")
+        {
+            Brain.destruye--;
+            Brain.ESTADO = "Destruyendo";
+        }
     }
 
     private IEnumerator Yeild()

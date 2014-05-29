@@ -19,6 +19,7 @@ public class Contadores : MonoBehaviour {
     private int decenaTiempo;
     private int unidadTiempo;
     private int cantidadTiempo;
+    public static int incremento;
 
     //Texturas
     public Texture2D[] textura = new Texture2D[10];
@@ -31,6 +32,7 @@ public class Contadores : MonoBehaviour {
         cantidadMovimiento = 0;             //Establece en 0 los movimientos al cargar la escena.
         continuaContando = true;            //Permite un aumento en 1 del contador y no lo que dura un cuadro.
         Brain.continuarTiempo = true;
+        incremento = 0;
     }
 
     //Muestra los contadores que están activos.
@@ -76,41 +78,43 @@ public class Contadores : MonoBehaviour {
 
     void ContadorTiempo()
     {
-        if (Brain.continuarTiempo && Brain.ESTADO != "Tiempo")
-            cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad;    //Mantiene el conteo del tiempo pero a la inversa para hacer una cuenta regresiva.
-
-        if (Brain.pocion1Tiempo && Brain.ESTADO == "Nada")
-            cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 10;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la primera posción de tiempo.
-        
-        if (Brain.pocion2Tiempo && Brain.ESTADO == "Nada")
-            cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 20;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la segunda posción de tiempo.
-        
-        if (Brain.pocion3Tiempo && Brain.ESTADO == "Nada")
-            cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 30;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la tercera posción de tiempo.
-        
-        //Establece los parámetros de la centena, decena y la unidad.
-        centenaTiempo = cantidadTiempo / 100;
-        decenaTiempo = (cantidadTiempo / 10) - (centenaTiempo * 10);
-        unidadTiempo = cantidadTiempo - (decenaTiempo * 10) - (centenaTiempo * 100);
-
-        //Hace el cambio de valor global dependiendo si es centena, decena o unidad.
-        if (centenaTiempoTag)
-            Brain.numeroTiempo = centenaTiempo;
-
-        if (decenaTiempoTag)
-            Brain.numeroTiempo = decenaTiempo;
-
-        if (unidadTiempoTag)
-            Brain.numeroTiempo = unidadTiempo;
-
-        //Hace el cambio de textura.
-        if (decenaTiempoTag || unidadTiempoTag || centenaTiempoTag)
+        if (Time.timeScale == 1)
         {
-            gameObject.renderer.material.shader = Shader.Find("Unlit/Texture");
-            if (cantidadTiempo >= 0) gameObject.renderer.material.mainTexture = textura[Brain.numeroTiempo];
-            if (cantidadTiempo == 0) Brain.ESTADO = "Game Over";                //Si el tiempo termina cambia el estado del juego.
-        }
+            if (Brain.continuarTiempo && Brain.ESTADO != "Tiempo")
+                cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + incremento;    //Mantiene el conteo del tiempo pero a la inversa para hacer una cuenta regresiva.
 
+            if (Brain.pocion1Tiempo && Brain.ESTADO == "Nada")
+                cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 10 + incremento;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la primera posción de tiempo.
+
+            if (Brain.pocion2Tiempo && Brain.ESTADO == "Nada")
+                cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 20 + incremento;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la segunda posción de tiempo.
+
+            if (Brain.pocion3Tiempo && Brain.ESTADO == "Nada")
+                cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 30 + incremento;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la tercera posción de tiempo.
+
+            //Establece los parámetros de la centena, decena y la unidad.
+            centenaTiempo = cantidadTiempo / 100;
+            decenaTiempo = (cantidadTiempo / 10) - (centenaTiempo * 10);
+            unidadTiempo = cantidadTiempo - (decenaTiempo * 10) - (centenaTiempo * 100);
+
+            //Hace el cambio de valor global dependiendo si es centena, decena o unidad.
+            if (centenaTiempoTag)
+                Brain.numeroTiempo = centenaTiempo;
+
+            if (decenaTiempoTag)
+                Brain.numeroTiempo = decenaTiempo;
+
+            if (unidadTiempoTag)
+                Brain.numeroTiempo = unidadTiempo;
+
+            //Hace el cambio de textura.
+            if (decenaTiempoTag || unidadTiempoTag || centenaTiempoTag)
+            {
+                gameObject.renderer.material.shader = Shader.Find("Unlit/Texture");
+                if (cantidadTiempo >= 0) gameObject.renderer.material.mainTexture = textura[Brain.numeroTiempo];
+                if (cantidadTiempo == 0) Brain.ESTADO = "Game Over";                //Si el tiempo termina cambia el estado del juego.
+            }
+        }
     }
 
     

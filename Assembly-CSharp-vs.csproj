@@ -50,14 +50,15 @@
      <Compile Include="Assets\ClickButton.cs" />
      <Compile Include="Assets\Contadores.cs" />
      <Compile Include="Assets\Cuadricula.cs" />
+     <Compile Include="Assets\Enemigo.cs" />
      <Compile Include="Assets\Movimiento.cs" />
      <Compile Include="Assets\PiedraMagica.cs" />
+     <Compile Include="Assets\Punto.cs" />
      <Compile Include="Assets\Scripts Antiguos\Buttons.cs" />
      <Compile Include="Assets\Scripts Antiguos\Cuadriculas.cs" />
-     <Compile Include="Assets\Scripts Antiguos\Enemigo.cs" />
+     <Compile Include="Assets\Scripts Antiguos\Enemigo2.cs" />
      <Compile Include="Assets\Scripts Antiguos\Move.cs" />
      <Compile Include="Assets\Scripts Antiguos\Piedra.cs" />
-     <Compile Include="Assets\Scripts Antiguos\PiedraMagica.cs" />
      <Compile Include="Assets\Scripts Antiguos\UtilidadesHagi.cs" />
      <Compile Include="Assets\Scripts\Brain.cs" />
      <Compile Include="Assets\Scripts\Buttons.cs" />

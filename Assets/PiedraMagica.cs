@@ -13,6 +13,7 @@ public class PiedraMagica : MonoBehaviour {
 	
 	
 	void Update () {
+        Debug.Log(activo);
 	}
 
     void OnMouseDown() 
@@ -41,7 +42,6 @@ public class PiedraMagica : MonoBehaviour {
         }
     }
 
-
     /******************************************************************************************/
     //                                      Yeild                                             //
     /******************************************************************************************/
@@ -52,7 +52,7 @@ public class PiedraMagica : MonoBehaviour {
         Collider[] estorbos = Physics.OverlapSphere(this.gameObject.transform.position, 1.5f);      //Busca los estorbos en un alcance de 1 espacio a cada lado.
 
         for (int i = 0; i < estorbos.Length; i++)                                                   //En caso de ser un estorbo para el giro, lo desaparece.
-            if (estorbos[i].gameObject.tag == "Pared" || estorbos[i].gameObject.tag == "Enemigo")
+            if (estorbos[i].gameObject.tag == "Obstaculo" || estorbos[i].gameObject.tag == "Enemigo")
                 estorbos[i].gameObject.renderer.enabled = false;
         
         
@@ -69,7 +69,7 @@ public class PiedraMagica : MonoBehaviour {
         }
 
         for (int i = 0; i < estorbos.Length; i++)       //Reaparece los estorbos.
-            if (estorbos[i].gameObject.tag == "Pared" || estorbos[i].gameObject.tag == "Enemigo")
+            if (estorbos[i].gameObject.tag == "Obstaculo" || estorbos[i].gameObject.tag == "Enemigo")
                 estorbos[i].gameObject.renderer.enabled = true;
 
         hayGemas = false;       //Quita la validación de gemas para nueva evaluación.

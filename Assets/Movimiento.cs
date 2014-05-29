@@ -49,6 +49,7 @@ public class Movimiento : MonoBehaviour {
                 if (circulo[i].gameObject.tag == "Cuadricula")
                     circulo[i].BroadcastMessage("Desactivar", SendMessageOptions.RequireReceiver);
         }
+
     }
 
     /******************************************************************************************/
@@ -104,6 +105,8 @@ public class Movimiento : MonoBehaviour {
             if (direccion != "Nada")
             {
                 gameObject.tag = "GemaEnMovimiento";
+                Brain.ESTADO = "GemaEnMovimiento";
+                Time.timeScale = 3;    
                 rigidbody.constraints = RigidbodyConstraints.None;
                 rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             }
@@ -112,6 +115,20 @@ public class Movimiento : MonoBehaviour {
                 direccion = "Nada";
             }
         }
+
+        if (Brain.ESTADO == "A Punto")                      //Si se activa la poción y es la primera opción seleccionada.
+        {
+            Brain.ESTADO = "A Punto - Esperando Punto";     //Cambia el estado del juego a esperar a que se seleccione el punto final.
+            this.gameObject.tag = "GemaAPunto";
+        }
+
+        if (Brain.ESTADO == "A Punto - Esperando Gema")     //Si se seleccionó primero el punto y al final la gema.
+        {
+            this.gameObject.transform.position = new Vector3(Brain.punto.x, this.gameObject.transform.position.y, Brain.punto.z);     //Mover la gema al punto ya seleccionado con la misma altura de la gema para no causar problemas.
+            Brain.punto = new Vector3(0, 0, 0);        //Se anula la posición del vector auxiliar del cerebro.
+            Brain.ESTADO = "Nada";                          //Se finaliza la poción.
+        }
+
     }
 
     /******************************************************************************************/
@@ -127,28 +144,40 @@ public class Movimiento : MonoBehaviour {
 
         //Detecta las colisiones en el sentido dado y si se activa cambia el tag de la gema y modifica su dirección.
         if (Physics.Raycast(transform.position, -Vector3.back, out hit, distancia))
-            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica") && direccion == "Arriba")
+            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica" || hit.collider.gameObject.tag == "Obstaculo") && direccion == "Arriba")
             {
                 gameObject.tag = "GemaQuieta";
+                Brain.ESTADO = "Nada";
                 direccion = "Nada";
+                Time.timeScale = 1;
+                Contadores.incremento++;
             }
         if (Physics.Raycast(transform.position, Vector3.back, out hit, distancia))
-            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica") && direccion == "Abajo")
+            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica" || hit.collider.gameObject.tag == "Obstaculo") && direccion == "Abajo")
             {
                 gameObject.tag = "GemaQuieta";
+                Brain.ESTADO = "Nada";
                 direccion = "Nada";
+                Time.timeScale = 1;
+                Contadores.incremento++;
             }
         if (Physics.Raycast(transform.position, Vector3.left, out hit, distancia))
-            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica") && direccion == "Izquierda")
+            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica" || hit.collider.gameObject.tag == "Obstaculo") && direccion == "Izquierda")
             {
                 gameObject.tag = "GemaQuieta";
+                Brain.ESTADO = "Nada";
                 direccion = "Nada";
+                Time.timeScale = 1;
+                Contadores.incremento++;
             }
         if (Physics.Raycast(transform.position, Vector3.right, out hit, distancia))
-            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica") && direccion == "Derecha")
+            if ((hit.collider.gameObject.name == "Enemigo" || hit.collider.gameObject.tag == "Pared" || hit.collider.gameObject.tag == "GemaQuieta" || hit.collider.gameObject.tag == "Piedra" || hit.collider.gameObject.tag == "PiedraMagica" || hit.collider.gameObject.tag == "Obstaculo") && direccion == "Derecha")
             {
                 gameObject.tag = "GemaQuieta";
+                Brain.ESTADO = "Nada";
                 direccion = "Nada";
+                Time.timeScale = 1;
+                Contadores.incremento++;
             }
     }
     
@@ -182,5 +211,16 @@ public class Movimiento : MonoBehaviour {
         for (int i = 0; i < puntos.Length; i++)
             if(puntos[i].tag == "Punto")
                 puntos[i].BroadcastMessage("Desactivar", SendMessageOptions.DontRequireReceiver);
+    }
+
+    /****************************************/
+    //                A PUNTO               //
+    /****************************************/
+
+    void APunto(Vector3 posicion)
+    {             
+        this.gameObject.tag = "GemaQuieta";         //Restaura el tag de la gema.
+        this.gameObject.transform.position = new Vector3(posicion.x, this.gameObject.transform.position.y, posicion.z); //Hace el movimiento de la gema al punto deseado con la altura de la gema original para evitar problemas.
+        Brain.ESTADO = "Nada";      //Termina la poción.
     }
 }

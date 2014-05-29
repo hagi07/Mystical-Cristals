@@ -46,7 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\NewBehaviourScript.js" />
+     <Compile Include="Assets\Scripts\Buttons.js" />
+     <Compile Include="Assets\Scripts\Cerebro.js" />
+     <Compile Include="Assets\Scripts\Generador.js" />
+     <Compile Include="Assets\Scripts\contador.js" />
+     <Compile Include="Assets\Scripts\enemigo.js" />
+     <Compile Include="Assets\Scripts\movimiento.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

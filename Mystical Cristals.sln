@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{29C1976A-AC29-6DF0-0944-77CEC1B42F36}") = "Mystical Cristals", "Assembly-CSharp.csproj", "{693BAC94-4B5A-420D-FC71-3B663AD8F7A7}"
 EndProject
+Project("{29C1976A-AC29-6DF0-0944-77CEC1B42F36}") = "Mystical Cristals", "Assembly-UnityScript.unityproj", "{2F84BB0E-2E2A-FB96-A3D1-AA120B0082DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{693BAC94-4B5A-420D-FC71-3B663AD8F7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{693BAC94-4B5A-420D-FC71-3B663AD8F7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{693BAC94-4B5A-420D-FC71-3B663AD8F7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F84BB0E-2E2A-FB96-A3D1-AA120B0082DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F84BB0E-2E2A-FB96-A3D1-AA120B0082DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F84BB0E-2E2A-FB96-A3D1-AA120B0082DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F84BB0E-2E2A-FB96-A3D1-AA120B0082DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																												GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
