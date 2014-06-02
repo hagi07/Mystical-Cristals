@@ -27,6 +27,7 @@ public class Brain : MonoBehaviour {
     public static bool pocion1Tiempo;
     public static bool pocion2Tiempo;
     public static bool pocion3Tiempo;
+    public static bool pocionActivaTiempo;
 
         //A Punto
     public static Vector3 punto;
@@ -50,6 +51,7 @@ public class Brain : MonoBehaviour {
         pocion1Tiempo = false;
         pocion2Tiempo = false;
         pocion3Tiempo = false;
+        pocionActivaTiempo = true;
 	}
 	
 	void Update () {

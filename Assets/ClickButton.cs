@@ -60,6 +60,7 @@ public class ClickButton : MonoBehaviour {
     private IEnumerator Yeild()
     {
         okContinua = false;     //Bloquea una segunda activación de la poción.
+        Brain.pocionActivaTiempo = false;
 
         yield return new WaitForSeconds(10);    //Detiene el reloj por 10 segundos.
         
@@ -81,6 +82,7 @@ public class ClickButton : MonoBehaviour {
             Brain.pocion3Tiempo = true;
             Brain.ESTADO = "Nada";
         }
-        okContinua = true;                                      //Habilida el uso de la poción de nuevo.
+        okContinua = true;                  //Habilita el uso de la poción de nuevo.
+        Brain.pocionActivaTiempo = true;   //Habilita el uso de la poción de nuevo.
     }
 }

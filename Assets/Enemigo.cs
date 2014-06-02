@@ -58,19 +58,19 @@ public class Enemigo : MonoBehaviour {
 
         //Detecta las colisiones en el sentido dado y si se activa cambia el tag de la gema y modifica su dirección.
         if (Physics.Raycast(transform.position, -Vector3.back, out hit, distancia))
-            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo")
+            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo" || hit.collider.tag == "GemaQuieta")
                 direccion = "Abajo";
         
         if (Physics.Raycast(transform.position, Vector3.back, out hit, distancia))
-            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo")
+            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo" || hit.collider.tag == "GemaQuieta")
                 direccion = "Arriba";
         
         if (Physics.Raycast(transform.position, Vector3.left, out hit, distancia))
-            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo")
+            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo" || hit.collider.tag == "GemaQuieta")
                 direccion = "Derecha";
 
         if (Physics.Raycast(transform.position, Vector3.right, out hit, distancia))
-            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo")
+            if (hit.collider.tag == "Pared" || hit.collider.tag == "Obstaculo" || hit.collider.tag == "GemaQuieta")
                 direccion = "Izquierda";
 
     }

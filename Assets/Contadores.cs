@@ -78,18 +78,19 @@ public class Contadores : MonoBehaviour {
 
     void ContadorTiempo()
     {
+        
         if (Time.timeScale == 1)
         {
-            if (Brain.continuarTiempo && Brain.ESTADO != "Tiempo")
+            if (Brain.continuarTiempo && Brain.ESTADO != "Tiempo" && Brain.pocionActivaTiempo)
                 cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + incremento;    //Mantiene el conteo del tiempo pero a la inversa para hacer una cuenta regresiva.
 
-            if (Brain.pocion1Tiempo && Brain.ESTADO == "Nada")
+            if (Brain.pocion1Tiempo && Brain.ESTADO == "Nada" && Brain.pocionActivaTiempo)
                 cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 10 + incremento;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la primera posción de tiempo.
 
-            if (Brain.pocion2Tiempo && Brain.ESTADO == "Nada")
+            if (Brain.pocion2Tiempo && Brain.ESTADO == "Nada" && Brain.pocionActivaTiempo)
                 cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 20 + incremento;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la segunda posción de tiempo.
 
-            if (Brain.pocion3Tiempo && Brain.ESTADO == "Nada")
+            if (Brain.pocion3Tiempo && Brain.ESTADO == "Nada" && Brain.pocionActivaTiempo)
                 cantidadTiempo = 360 - (int)Time.timeSinceLevelLoad + 30 + incremento;       //Cuenta el tiempo pero agregando el tiempo "perdido" de la tercera posción de tiempo.
 
             //Establece los parámetros de la centena, decena y la unidad.
